@@ -1,21 +1,19 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "types": [
-      "node"
-    ],
+    "target": "es5",
     "typeRoots": [
       "node_modules/@types"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
     ]
-  },
-  "files": [
-    "./gulpfile.ts",
-    "./src/App.Base/gulp/tasks/web.ts",
-    "./src/App.Base/gulp/tasks/pug.ts",
-    "./src/App.Base/gulp/tasks/ng.ts"
-  ]
+  }
 }

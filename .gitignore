@@ -1,12 +1,17 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
+/src/App.base/dist
 /tmp
 /out-tsc
+/gulpfile.js
+/gulp/**/*.js
+/src/app.base/gulp/**/*.js
+/src/app.base/src/app/**/*.html
 
 # dependencies
-/node_modules
+node_modules/**
+src/**/node_modules/
 
 # IDEs and editors
 /.idea
@@ -25,17 +30,16 @@
 !.vscode/extensions.json
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
+/src/App.base/.sass-cache
+/src/App.base/connect.lock
+/src/App.base/coverage
+/src/App.base/libpeerconnection.log
 npm-debug.log
 testem.log
-/typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/src/App.base/e2e/*.js
+/src/App.base/e2e/*.map
 
 # System Files
 .DS_Store
