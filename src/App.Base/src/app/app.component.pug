@@ -1,3 +1,8 @@
 div(style='text-align:center')
   h1
-    | Welcome to {{title}}!  
+    | Welcome to {{title}}!
+
+nav
+  a(router-link='/users' router-link-active='active') Users  
+
+router-outlet  
