@@ -1,0 +1,4 @@
+button((click)='search()') Search
+
+ol([locker]="lock$ | async")
+  li(*ngFor="let user of users$ | async") {{user.name}}

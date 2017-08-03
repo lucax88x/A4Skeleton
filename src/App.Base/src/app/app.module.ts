@@ -1,28 +1,62 @@
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/switchMap';
+
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import routes from './app.routes';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { AppMetaReducers } from './app.meta-reducers';
+import { AppReducers } from './app.reducers';
+import { AppRoutes } from './app.routes';
+import { NotFoundComponent } from './containers/not-found/not-found.component';
+import { UserDetailComponent } from './containers/user-detail/user-detail.component';
+import { UserListComponent } from './containers/user-list/user-list.component';
+import { UserListEffects } from './containers/user-list/user-list.effects';
+import { LockerDirective } from './directives/locker.directive';
+import { ValuesPipe } from './pipes/values.pipe';
+import { LockerService } from './services/locker.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
     UserDetailComponent,
     UserListComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ValuesPipe,
+    LockerDirective
   ],
   imports: [
+    HttpModule,
     BrowserModule,
+
     RouterModule.forRoot(
-      routes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+      AppRoutes,
+      // { enableTracing: !environment.production }
+    ),
+
+    StoreModule.forRoot(AppReducers, { metaReducers: AppMetaReducers }),
+
+    StoreRouterConnectingModule,
+
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+
+    EffectsModule.forRoot([UserListEffects]),
   ],
-  providers: [],
+  providers: [LockerService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

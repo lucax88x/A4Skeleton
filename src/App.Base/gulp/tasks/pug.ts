@@ -1,12 +1,13 @@
 import gulp = require('gulp');
-import debug = require('gulp-debug');
-import pug = require('gulp-pug');
 import batch = require('gulp-batch');
-
+import debug = require('gulp-debug');
+import plumber = require('gulp-plumber');
+import pug = require('gulp-pug');
 import { Gulpclass, Task } from 'gulpclass/Decorators';
 
+import logger from '../../../../gulp/logger';
 import config from '../config';
-import logger from "../../../../gulp/logger";
+
 
 const argv = require("yargs").argv;
 
@@ -18,6 +19,7 @@ export class Gulpfile {
         logger.info(`compiling ${config.pug.src}`);
 
         return gulp.src(config.pug.src)
+            .pipe(plumber())
             .pipe(debug({ title: 'pug:build', minimal: true }))
             .pipe(pug({ verbose: argv.verbose }))
             .pipe(gulp.dest(config.pug.dest))

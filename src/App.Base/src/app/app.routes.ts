@@ -1,8 +1,11 @@
-import { NotFoundComponent } from './not-found/not-found.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { Route } from '@angular/router';
 
-export default  [
+import { NotFoundComponent } from './containers/not-found/not-found.component';
+import { UserDetailComponent } from './containers/user-detail/user-detail.component';
+import { UserListComponent } from './containers/user-list/user-list.component';
+
+
+export const AppRoutes: Route[] = [
     {
         path: 'users',
         component: UserListComponent
