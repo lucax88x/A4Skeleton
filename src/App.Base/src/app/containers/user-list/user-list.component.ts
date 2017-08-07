@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { State } from '../../app.state';
 import { User } from '../../models/user';
 import { SearchUserAction } from './user-list.actions';
-import { getLock, getUsers } from './user-list.selectors';
+import { UserListSelectors } from './user-list.selectors';
 
 @Component({
   selector: 'app-user-list',
@@ -18,8 +18,8 @@ export class UserListComponent implements OnInit {
   lock$: Observable<boolean>;
 
   constructor(private store: Store<State>) {
-    this.users$ = this.store.select(getUsers);
-    this.lock$ = this.store.select(getLock);
+    this.users$ = this.store.select(UserListSelectors.Users);
+    this.lock$ = this.store.select(UserListSelectors.Lock);
   };
 
   ngOnInit() {

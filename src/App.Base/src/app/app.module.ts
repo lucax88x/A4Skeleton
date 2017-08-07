@@ -1,11 +1,4 @@
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/switchMap';
+import 'rxjs/Rx';
 
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';

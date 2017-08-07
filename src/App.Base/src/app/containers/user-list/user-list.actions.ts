@@ -22,4 +22,4 @@ export class SearchUserErrorAction implements Action {
   constructor(public payload: string) { }
 }
 
-export type Actions = SearchUserAction | SearchUserCompleteAction | SearchUserErrorAction;
+export type UserListActions = SearchUserAction | SearchUserCompleteAction | SearchUserErrorAction;

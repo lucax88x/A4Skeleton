@@ -1,15 +1,9 @@
 import * as _ from 'lodash';
 
-import { Actions, SEARCH_USER, SEARCH_USER_COMPLETE, SEARCH_USER_ERROR } from './user-list.actions';
+import { UserListActions, SEARCH_USER, SEARCH_USER_COMPLETE, SEARCH_USER_ERROR } from './user-list.actions';
 import { UserListState } from './user-list.states';
 
-const initialState: UserListState = {
-  users: [],
-  lock: false,
-  error: null
-};
-
-export function UserListReducer(state = initialState, action: Actions): UserListState {
+export function UserListReducer(state = new UserListState(), action: UserListActions): UserListState {
   switch (action.type) {
     case SEARCH_USER:
       return _.assign({}, state, {
@@ -23,8 +17,9 @@ export function UserListReducer(state = initialState, action: Actions): UserList
       });
     case SEARCH_USER_ERROR:
       return _.assign({}, state, {
+        users: [],
+        lock: false,
         error: action.payload,
-        lock: false
       });
 
     default:
