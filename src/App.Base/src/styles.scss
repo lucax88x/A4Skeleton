@@ -1,9 +1,14 @@
-@import 'node_modules/nprogress/nprogress';
-@import 'node_modules/ngx-toastr/toastr';
 
+// https://github.com/jenil/bulmaswatch/issues/13
+// @import '~bulmaswatch/slate/_variables';
+// @import '~bulma/bulma';
+// @import '~bulmaswatch/slate/_overrides';
+@import '~bulmaswatch/slate/bulmaswatch.min.css';
 
-$primaryColor: #eeffcc;
+$fa-font-path:   "~font-awesome/fonts";
+// $fa-font-path:   "./assets/fonts";
+@import '~font-awesome/scss/font-awesome';
 
-body {
-    background: $primaryColor;
-}
+@import '~nprogress/nprogress';
+
+@import '~ngx-toastr/toastr';

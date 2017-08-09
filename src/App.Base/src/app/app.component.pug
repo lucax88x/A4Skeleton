@@ -1,8 +1,132 @@
-div(style='text-align:center')
-  h1
-    | Welcome to {{title}}!
 
-nav
-  a(router-link='/users' router-link-active='active') Users  
+nav.navbar
+  .navbar-brand
+    a.navbar-item(href='http://bulma.io')
+      img(src='http://bulma.io/images/bulma-logo.png', alt='Bulma: a modern CSS framework based on Flexbox', width='112', height='28')
+    a.navbar-item.is-hidden-desktop(href='https://github.com/jgthms/bulma', target='_blank')
+      span.icon(style='color: #333;')
+        i.fa.fa-github
+    a.navbar-item.is-hidden-desktop(href='https://twitter.com/jgthms', target='_blank')
+      span.icon(style='color: #55acee;')
+        i.fa.fa-twitter
+    .navbar-burger.burger(data-target='navMenuExample')
+      span
+      span
+      span
+  #navMenuExample.navbar-menu
+    .navbar-start
+      .navbar-item.has-dropdown.is-hoverable
+        a.navbar-link.is-active(href='/documentation/overview/start/')
+          | Docs
+        .navbar-dropdown
+          a.navbar-item(href='/documentation/overview/start/')
+            | Overview
+          a.navbar-item(href='http://bulma.io/documentation/modifiers/syntax/')
+            | Modifiers
+          a.navbar-item(href='http://bulma.io/documentation/grid/columns/')
+            | Grid
+          a.navbar-item(href='http://bulma.io/documentation/layout/container/')
+            | Layout
+          a.navbar-item(href='http://bulma.io/documentation/form/general/')
+            | Form
+          a.navbar-item(href='http://bulma.io/documentation/elements/box/')
+            | Elements
+          a.navbar-item.is-active(href='http://bulma.io/documentation/components/breadcrumb/')
+            | Components
+          hr.navbar-divider
+          .navbar-item
+            div
+              p.is-size-6-desktop
+                strong.has-text-info 0.5.0
+              small
+                a.view-all-versions(href='/versions') View all versions
+      .navbar-item.has-dropdown.is-hoverable
+        a.navbar-link(href='http://bulma.io/blog/')
+          | Blog
+        #blogDropdown.navbar-dropdown(data-style='width: 18rem;')
+          a.navbar-item(href='/2017/08/03/list-of-tags/')
+            .navbar-content
+              p
+                small.has-text-info 03 Aug 2017
+              p New feature: list of tags
+          a.navbar-item(href='/2017/08/01/bulma-bootstrap-comparison/')
+            .navbar-content
+              p
+                small.has-text-info 01 Aug 2017
+              p Bulma / Bootstrap comparison
+          a.navbar-item(href='/2017/07/24/access-previous-bulma-versions/')
+            .navbar-content
+              p
+                small.has-text-info 24 Jul 2017
+              p Access previous Bulma versions
+          a.navbar-item(href='http://bulma.io/blog/')
+            | More posts
+          hr.navbar-divider
+          .navbar-item
+            .navbar-content
+              .level.is-mobile
+                .level-left
+                  .level-item
+                    strong Stay up to date!
+                .level-right
+                  .level-item
+                    a.button.is-rss.is-small(href='http://bulma.io/atom.xml')
+                      span.icon.is-small
+                        i.fa.fa-rss
+                      span Subscribe
+      .navbar-item.has-dropdown.is-hoverable
+        .navbar-link
+          | More
+        #moreDropdown.navbar-dropdown
+          a.navbar-item(href='http://bulma.io/extensions/')
+            .level.is-mobile
+              .level-left
+                .level-item
+                  p
+                    strong Extensions
+                    br
+                    small Side projects to enhance Bulma
+              .level-right
+                .level-item
+                  span.icon.has-text-info
+                    i.fa.fa-plug
+      a.navbar-item(href='http://bulma.io/expo/')
+        span.emoji 🎨
+        |         Expo
+      a.navbar-item(href='http://bulma.io/love/')
+        span.emoji ❤️
+        |         Love
+    .navbar-end
+      a.navbar-item.is-hidden-desktop-only(href='https://github.com/jgthms/bulma', target='_blank')
+        | Github
+      a.navbar-item.is-hidden-desktop-only(href='https://twitter.com/jgthms', target='_blank')
+        | Twitter
+      .navbar-item
+        .field.is-grouped
+          p.control
+            a.tw-button.button(data-social-network='Twitter', data-social-action='tweet', data-social-target='http://bulma.io', target='_blank', href='https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&hashtags=bulmaio&url=http://bulma.io&via=jgthms')
+              span.icon
+                i.fa.fa-twitter
+              span
+                | Tweet
+          p.control
+            a.button.is-primary(href='https://github.com/jgthms/bulma/archive/0.5.0.zip')
+              span.icon
+                i.fa.fa-download
+              span Download
 
-router-outlet  
+
+section.section
+  .container
+    h1.title
+    p.subtitle
+      strong Bulma
+
+    div(style='text-align:center')
+      h1
+        | Welcome to {{title}}!
+
+    nav
+      a(router-link='/users' router-link-active='active') Users  
+
+    router-outlet  
