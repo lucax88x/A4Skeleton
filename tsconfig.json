@@ -16,6 +16,7 @@
     "./gulpfile.ts",
     "./src/App.Base/gulp/tasks/web.ts",
     "./src/App.Base/gulp/tasks/pug.ts",
-    "./src/App.Base/gulp/tasks/ng.ts"
+    "./src/App.Base/gulp/tasks/ng.ts",
+    "./src/App.Base/gulp/tasks/content.ts"
   ]
 }

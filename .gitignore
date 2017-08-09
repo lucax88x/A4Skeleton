@@ -2,6 +2,7 @@
 
 # compiled output
 /src/App.base/dist
+/src/App.base/src/assets
 /tmp
 /out-tsc
 /gulpfile.js
