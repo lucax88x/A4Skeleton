@@ -3,11 +3,13 @@ import 'rxjs/Rx';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ToastrModule } from 'ngx-toastr';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -35,6 +37,7 @@ import { UserService } from './services/user.service';
   imports: [
     HttpModule,
     BrowserModule,
+    BrowserAnimationsModule,
 
     RouterModule.forRoot(
       AppRoutes,
@@ -48,6 +51,14 @@ import { UserService } from './services/user.service';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
 
     EffectsModule.forRoot([UserListEffects]),
+
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      extendedTimeOut: 500,
+      preventDuplicates: true,
+      progressBar: true
+    }),
+
   ],
   providers: [LockerService, UserService],
   bootstrap: [AppComponent]

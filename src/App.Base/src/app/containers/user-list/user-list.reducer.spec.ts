@@ -21,8 +21,7 @@ describe('UserListReducer', () => {
             expect(result).toEqual(
                 {
                     users: [],
-                    lock: true,
-                    error: null
+                    lock: true
                 });
         });
     });
@@ -37,8 +36,7 @@ describe('UserListReducer', () => {
             expect(result).toEqual(
                 {
                     users: users,
-                    lock: false,
-                    error: null
+                    lock: false
                 });
         });
     });
@@ -52,8 +50,7 @@ describe('UserListReducer', () => {
             expect(result).toEqual(
                 {
                     users: [],
-                    lock: false,
-                    error: "error"
+                    lock: false
                 });
         });
     });

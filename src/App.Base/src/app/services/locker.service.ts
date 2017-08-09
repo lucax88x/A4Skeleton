@@ -9,8 +9,7 @@ export class LockerService {
   private countLock = 0;
 
   Lock(): void {
-    if (this.countLock === 0) {
-      console.log(NProgress.start);
+    if (this.countLock === 0) {      
       NProgress.start();
     }
 
