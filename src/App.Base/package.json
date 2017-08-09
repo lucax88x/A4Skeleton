@@ -35,7 +35,9 @@
     "lodash": "^4.17.4",
     "ngx-toastr": "^6.0.0",
     "nprogress": "^0.2.0",
+    "please-wait": "0.0.5",
     "rxjs": "^5.4.1",
+    "spinkit": "^1.2.5",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

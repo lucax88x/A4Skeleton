@@ -1,0 +1,15 @@
+@import '~please-wait/src/please-wait';
+@import "~spinkit/scss/spinners/11-folding-cube.scss";
+.pg-loading-screen {
+    pg-loading-logo-header {
+        display: none;
+    }
+    .sk-folding-cube {
+        margin: 100px auto;
+        width: 100px;
+        height: 100px;
+        .sk-cube:before {
+            background-color: #FFF;
+        }
+    }
+}
