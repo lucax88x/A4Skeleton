@@ -4,6 +4,7 @@
   "description": "a4 test",
   "main": "gulpfile.js",
   "scripts": {
+    "postinstall": "cd src/App.Base && npm install",
     "gulp:build": "tsc"
   },
   "author": "LucaTrazzi",
