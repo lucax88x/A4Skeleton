@@ -1,8 +1,8 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import { State } from './app.state';
+import { AdminState } from './admin.state';
 import { UserListReducer } from './containers/user-list/user-list.reducer';
 
-export const AppReducers: ActionReducerMap<State> = {
+export const AdminReducers: ActionReducerMap<AdminState> = {
     userList: UserListReducer
 };

@@ -12,45 +12,34 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ToastrModule } from 'ngx-toastr';
 
 import { environment } from '../environments/environment';
+import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { AppMetaReducers } from './app.meta-reducers';
-import { AppReducers } from './app.reducers';
 import { AppRoutes } from './app.routes';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
-import { UserDetailComponent } from './containers/user-detail/user-detail.component';
-import { UserListComponent } from './containers/user-list/user-list.component';
-import { UserListEffects } from './containers/user-list/user-list.effects';
-import { LockerDirective } from './directives/locker.directive';
-import { ValuesPipe } from './pipes/values.pipe';
-import { LockerService } from './services/locker.service';
-import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UserDetailComponent,
-    UserListComponent,
-    NotFoundComponent,
-    ValuesPipe,
-    LockerDirective
+    AppComponent,    
+    NotFoundComponent    
   ],
   imports: [
     HttpModule,
     BrowserModule,
     BrowserAnimationsModule,
+    AdminModule,
 
     RouterModule.forRoot(
       AppRoutes,
       // { enableTracing: !environment.production }
     ),
 
-    StoreModule.forRoot(AppReducers, { metaReducers: AppMetaReducers }),
+    StoreModule.forRoot([], { metaReducers: AppMetaReducers }),
+    EffectsModule.forRoot([]),
 
     StoreRouterConnectingModule,
 
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-
-    EffectsModule.forRoot([UserListEffects]),
 
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -60,7 +49,7 @@ import { UserService } from './services/user.service';
     }),
 
   ],
-  providers: [LockerService, UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

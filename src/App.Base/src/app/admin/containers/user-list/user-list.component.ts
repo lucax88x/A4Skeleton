@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { State } from '../../app.state';
+import { State } from '../../../app.state';
 import { User } from '../../models/user';
 import { SearchUserAction } from './user-list.actions';
 import { UserListSelectors } from './user-list.selectors';
