@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { State } from '../../../app.state';
+import { AdminState } from '../../admin.state';
 import { User } from '../../models/user';
 import { SearchUserAction } from './user-list.actions';
 import { UserListSelectors } from './user-list.selectors';
@@ -17,7 +17,7 @@ export class UserListComponent implements OnInit {
   users$: Observable<User[]>;
   lock$: Observable<boolean>;
 
-  constructor(private store: Store<State>) {
+  constructor(private store: Store<AdminState>) {
     this.users$ = this.store.select(UserListSelectors.Users);
     this.lock$ = this.store.select(UserListSelectors.Lock);
   };

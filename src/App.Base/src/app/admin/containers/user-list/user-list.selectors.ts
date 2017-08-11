@@ -3,15 +3,15 @@ import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/s
 import { AdminState } from '../../admin.state';
 import { User } from '../../models/user';
 
-const getUserListState = createFeatureSelector<AdminState>('admin');
+const getState = createFeatureSelector<AdminState>('admin');
 
 export class UserListSelectors {
   static Users: MemoizedSelector<{}, User[]> = createSelector(
-    getUserListState,
+    getState,
     (state: AdminState) => state.userList.users
   );
   static Lock: MemoizedSelector<{}, boolean> = createSelector(
-    getUserListState,
+    getState,
     (state: AdminState) => state.userList.lock
   );
 }

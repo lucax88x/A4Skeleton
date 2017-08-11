@@ -3,15 +3,14 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class UserService {
+export class AuthService {
 
   constructor(
     private http: Http
   ) { }
 
-  list(): Observable<Response> {
-    return this.http.get('https://jsonplaceholder.typicode.com/users')
-      .map(response => response.json());
+  login(): Observable<boolean> {
+    return Observable.of(false);
   }
 
 }

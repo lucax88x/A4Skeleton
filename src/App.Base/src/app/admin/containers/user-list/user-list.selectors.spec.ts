@@ -1,21 +1,15 @@
-import { State } from '../../app.state';
-import { UserListSelectors } from './user-list.selectors';
+import { AdminState } from '../../admin.state';
 import { UserFactory } from '../../spec/factories/user-factory';
-import { SearchUserAction, SearchUserCompleteAction, SearchUserErrorAction, UserListActions } from './user-list.actions';
-
-import { UserListState } from './user-list.states';
+import { UserListSelectors } from './user-list.selectors';
 
 describe('UserListSelectors', () => {
 
-  let state: State = {
+  let state: AdminState = {
     userList: {
       users: UserFactory.multiple(3),
-      lock: false,
-      error: null
+      lock: false
     }
   };
-
-  state.userList
 
   it('should return users', () => {
     //SETUP && ACT
