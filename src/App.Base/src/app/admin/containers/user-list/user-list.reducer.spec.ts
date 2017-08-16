@@ -1,7 +1,7 @@
 import { UserFactory } from '../../spec/factories/user-factory';
 import { SearchUserAction, SearchUserCompleteAction, SearchUserErrorAction, UserListActions } from './user-list.actions';
 import { UserListReducer } from './user-list.reducer';
-import { UserListState } from './user-list.states';
+import { UserListState } from './user-list.state';
 
 describe('UserListReducer', () => {
     it('should return the default state', () => {
@@ -27,7 +27,7 @@ describe('UserListReducer', () => {
     });
 
     describe('SEARCH_USER_COMPLETE', () => {
-        it('should lock and reset users', () => {
+        it('should unlock and assign users', () => {
             //SETUP
             let users = UserFactory.multiple(3);
             const result = UserListReducer(undefined, new SearchUserCompleteAction(users));
@@ -42,7 +42,7 @@ describe('UserListReducer', () => {
     });
 
     describe('SEARCH_USER_ERROR', () => {
-        it('should lock and reset users', () => {
+        it('should unlock and reset users', () => {
             //SETUP
             const result = UserListReducer(undefined, new SearchUserErrorAction("error"));
 

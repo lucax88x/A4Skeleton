@@ -1,9 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { AppReducers } from '../../app.reducers';
-import { LockerDirective } from '../../directives/locker.directive';
-import { LockerService } from '../../services/locker.service';
+import { CoreModule } from '../../../core/core.module';
 import { UserListComponent } from './user-list.component';
 
 describe('UserListComponent', () => {
@@ -13,10 +11,11 @@ describe('UserListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-         StoreModule.forRoot(AppReducers, {}),
+        StoreModule.forRoot([], {}),
+        CoreModule
       ],
-      declarations: [LockerDirective, UserListComponent],
-      providers: [LockerService]
+      declarations: [UserListComponent],
+      providers: []
     })
       .compileComponents();
   }));

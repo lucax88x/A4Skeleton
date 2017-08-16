@@ -1,7 +1,9 @@
 import { Route } from '@angular/router';
-// import { AuthGuard } from './auth/services/auth-guard.service';
+
+import { AuthGuard } from './auth/guards/auth.guard';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 
+// import { AuthGuard } from './auth/services/auth-guard.service';
 export const AppRoutes: Route[] = [
     {
         path: '',
@@ -10,9 +12,9 @@ export const AppRoutes: Route[] = [
     },
     {
         path: 'users',
-        loadChildren: './admin/admin.module#AdminModule'
-        // canActivate: [AuthGuard],
-    },        
+        loadChildren: './admin/admin.module#AdminModule',
+        canActivate: [AuthGuard]
+    },
     {
         path: '**',
         component: NotFoundComponent

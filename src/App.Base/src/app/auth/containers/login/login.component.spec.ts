@@ -1,9 +1,8 @@
+import { AuthReducers } from '../../auth.reducers';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { AppReducers } from '../../app.reducers';
-import { LockerDirective } from '../../directives/locker.directive';
-import { LockerService } from '../../services/locker.service';
+import { CoreModule } from '../../../core/core.module';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -13,10 +12,11 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-         StoreModule.forRoot(AppReducers, {}),
+        CoreModule,
+        StoreModule.forRoot([], {})
       ],
-      declarations: [LockerDirective, LoginComponent],
-      providers: [LockerService]
+      declarations: [LoginComponent],
+      providers: []
     })
       .compileComponents();
   }));

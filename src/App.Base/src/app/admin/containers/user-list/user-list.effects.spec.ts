@@ -69,7 +69,7 @@ describe('UserListEffects', () => {
 
     describe('SearchUserErrorAction', () => {
 
-        it('should return a pop a toastr', () => {
+        it('should pop a toastr', () => {
 
             //SETUP            
             actions = hot('-a', { a: new SearchUserErrorAction("fatal error") });

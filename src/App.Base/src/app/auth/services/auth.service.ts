@@ -9,8 +9,12 @@ export class AuthService {
     private http: Http
   ) { }
 
-  login(): Observable<boolean> {
-    return Observable.of(false);
+  login(username: string, password: string): Observable<boolean> {
+    if (username !== 'test') {
+      return Observable.throw('Invalid username or password');
+    }
+
+    return Observable.of(true);
   }
 
 }

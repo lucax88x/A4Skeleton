@@ -9,7 +9,7 @@ import { AuthReducers } from './auth.reducers';
 import { AuthRoutes } from './auth.routes';
 import { LoginComponent } from './containers/login/login.component';
 import { LoginEffects } from './containers/login/login.effects';
-import { LoginService } from './services/login.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
     declarations: [
@@ -26,6 +26,6 @@ import { LoginService } from './services/login.service';
         StoreModule.forFeature('auth', AuthReducers),
         EffectsModule.forFeature([LoginEffects]),
     ],
-    providers: [LoginService]
+    providers: [AuthService]
 })
 export class AuthModule { }

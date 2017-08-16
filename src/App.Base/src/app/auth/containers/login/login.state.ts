@@ -1,6 +1,3 @@
-import { User } from '../../models/user';
-
-export class UserListState {
-  users: User[] = [];
+export class LoginState {
   lock: boolean = false;
 };

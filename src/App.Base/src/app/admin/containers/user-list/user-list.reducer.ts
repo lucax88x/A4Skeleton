@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
 import { SEARCH_USER, SEARCH_USER_COMPLETE, SEARCH_USER_ERROR, UserListActions } from './user-list.actions';
-import { UserListState } from './user-list.states';
+import { UserListState } from './user-list.state';
 
 export function UserListReducer(state = new UserListState(), action: UserListActions): UserListState {
   switch (action.type) {

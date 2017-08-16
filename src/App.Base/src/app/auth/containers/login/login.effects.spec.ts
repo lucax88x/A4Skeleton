@@ -1,3 +1,4 @@
+import { AuthService } from '../../services/auth.service';
 import 'rxjs/Rx';
 
 import { async, TestBed } from '@angular/core/testing';
@@ -6,25 +7,23 @@ import { cold, hot } from 'jasmine-marbles';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs/Observable';
 
-import { LoginService } from '../../services/login.service';
-import { UserFactory } from '../../spec/factories/user-factory';
-import { LoginAction, LoginCompleteAction, LoginErrorAction } from './login.actions';
-import { UserListEffects } from './login.effects';
+import { LoginAction, LoginCompletedAction, LoginErrorAction, LoginFailedAction } from './login.actions';
+import { LoginEffects } from './login.effects';
 
-describe('UserListEffects', () => {
+describe('LoginEffects', () => {
     let actions: Observable<any>;
-    let userService: jasmine.SpyObj<UserService>;
+    let authService: jasmine.SpyObj<AuthService>;
     let toastrService: jasmine.SpyObj<ToastrService>;
-    let sut: UserListEffects;
+    let sut: LoginEffects;
 
     beforeEach(async(() => TestBed.configureTestingModule({
 
         providers: [
-            UserListEffects,
+            LoginEffects,
             provideMockActions(() => actions),
             {
-                provide: UserService,
-                useValue: jasmine.createSpyObj('userService', ['list'])
+                provide: AuthService,
+                useValue: jasmine.createSpyObj('authService', ['login'])
             },
             {
                 provide: ToastrService,
@@ -34,45 +33,54 @@ describe('UserListEffects', () => {
     })));
 
     beforeEach(() => {
-        sut = TestBed.get(UserListEffects);
-        userService = TestBed.get(UserService);
+        sut = TestBed.get(LoginEffects);
+        authService = TestBed.get(AuthService);
         toastrService = TestBed.get(ToastrService);
     });
 
-    describe('SearchUserAction', () => {
+    describe('LoginAction', () => {
 
-        it('should return a SearchUserCompleteAction, when we get users', () => {
+        it('should return a LoginCompleteAction, when we successfully log in', () => {
             //SETUP            
-            let users = UserFactory.multiple(2);
-
-            userService.list.and.returnValue(cold('-a', { a: users }));
-            actions = hot('-a', { a: new SearchUserAction() });
+            authService.login.and.returnValue(cold('-a', { a: true }));
+            actions = hot('-a', { a: new LoginAction() });
 
             //ACT && TEST
-            sut.search.subscribe(result => {
-                expect(result).toEqual(new SearchUserCompleteAction(users));
+            sut.login.subscribe(result => {
+                expect(result).toEqual(new LoginCompletedAction());
             });
         });
 
-        it('should return a SearchUserErrorAction, when an error occurs', () => {
-
-            //SETUP
-            userService.list.and.returnValue(cold('-#', {}, 'Error!'));
-            actions = hot('-a', { a: new SearchUserAction() });
+        it('should return a LoginFailedAction, when we successfully log in', () => {
+            //SETUP            
+            authService.login.and.returnValue(cold('-a', { a: false }));
+            actions = hot('-a', { a: new LoginAction() });
 
             //ACT && TEST
-            sut.search.subscribe(result => {
-                expect(result).toEqual(new SearchUserErrorAction('Error!'));
+            sut.login.subscribe(result => {
+                expect(result).toEqual(new LoginFailedAction());
+            });
+        });
+
+        it('should return a LoginErrorAction, when an error occurs', () => {
+
+            //SETUP
+            authService.login.and.returnValue(cold('-#', {}, 'Error!'));
+            actions = hot('-a', { a: new LoginAction() });
+
+            //ACT && TEST
+            sut.login.subscribe(result => {
+                expect(result).toEqual(new LoginErrorAction('Error!'));
             });
         });
     });
 
-    describe('SearchUserErrorAction', () => {
+    describe('LoginErrorAction', () => {
 
-        it('should return a pop a toastr', () => {
+        it('should pop a toastr', () => {
 
             //SETUP            
-            actions = hot('-a', { a: new SearchUserErrorAction("fatal error") });
+            actions = hot('-a', { a: new LoginErrorAction("fatal error") });
 
             //ACT && TEST
             sut.notifyError.subscribe(result => {

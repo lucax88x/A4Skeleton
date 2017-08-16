@@ -4,10 +4,12 @@ import { UserListSelectors } from './user-list.selectors';
 
 describe('UserListSelectors', () => {
 
-  let state: AdminState = {
-    userList: {
-      users: UserFactory.multiple(3),
-      lock: false
+  let state: { admin: AdminState } = {
+    admin: {
+      userList: {
+        users: UserFactory.multiple(3),
+        lock: false
+      }
     }
   };
 
@@ -16,7 +18,7 @@ describe('UserListSelectors', () => {
     const result = UserListSelectors.Users(state);
 
     //TEST
-    expect(result).toEqual(state.userList.users);
+    expect(result).toEqual(state.admin.userList.users);
   });
 
   it('should return lock', () => {
@@ -24,6 +26,6 @@ describe('UserListSelectors', () => {
     const result = UserListSelectors.Lock(state);
 
     //TEST
-    expect(result).toEqual(state.userList.lock);
+    expect(result).toEqual(state.admin.userList.lock);
   });
 });

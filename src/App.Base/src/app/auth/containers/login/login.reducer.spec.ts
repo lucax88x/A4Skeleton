@@ -1,55 +1,50 @@
-import { UserFactory } from '../../spec/factories/user-factory';
-import { SearchUserAction, SearchUserCompleteAction, SearchUserErrorAction, UserListActions } from './user-list.actions';
-import { UserListReducer } from './user-list.reducer';
-import { UserListState } from './user-list.states';
+import { LoginAction, LoginActions, LoginCompletedAction, LoginErrorAction } from './login.actions';
+import { LoginReducer } from './login.reducer';
+import { LoginState } from './login.state';
 
-describe('UserListReducer', () => {
+describe('LoginReducer', () => {
     it('should return the default state', () => {
         //SETUP && ACT
-        const result = UserListReducer(undefined, {} as UserListActions);
+        const result = LoginReducer(undefined, {} as LoginActions);
 
         //TEST
-        expect(result).toEqual(new UserListState());
+        expect(result).toEqual(new LoginState());
     });
 
-    describe('SEARCH_USER', () => {
-        it('should lock and reset users', () => {
+    describe('LOGIN', () => {
+        it('should lock', () => {
             //SETUP
-            const result = UserListReducer(undefined, new SearchUserAction());
+            const result = LoginReducer(undefined, new LoginAction());
 
             //TEST
             expect(result).toEqual(
                 {
-                    users: [],
                     lock: true
                 });
         });
     });
 
-    describe('SEARCH_USER_COMPLETE', () => {
-        it('should lock and reset users', () => {
+    describe('LOGIN_COMPLETE', () => {
+        it('should unlock', () => {
             //SETUP
-            let users = UserFactory.multiple(3);
-            const result = UserListReducer(undefined, new SearchUserCompleteAction(users));
+            const result = LoginReducer(undefined, new LoginCompletedAction());
 
             //TEST
             expect(result).toEqual(
                 {
-                    users: users,
                     lock: false
                 });
         });
     });
 
-    describe('SEARCH_USER_ERROR', () => {
-        it('should lock and reset users', () => {
+    describe('LOGIN_ERROR', () => {
+        it('should unlock', () => {
             //SETUP
-            const result = UserListReducer(undefined, new SearchUserErrorAction("error"));
+            const result = LoginReducer(undefined, new LoginErrorAction("error"));
 
             //TEST
             expect(result).toEqual(
                 {
-                    users: [],
                     lock: false
                 });
         });

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs/Observable';
 import { error } from 'util';
 
-import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { SEARCH_USER, SEARCH_USER_ERROR, SearchUserCompleteAction, SearchUserErrorAction } from './user-list.actions';
 
@@ -17,7 +16,7 @@ export class UserListEffects {
         .ofType(SEARCH_USER)
         .map(toPayload)
         .switchMap(payload => this.userService.list()
-            .map((users: User[]) => new SearchUserCompleteAction(users))
+            .map(users => new SearchUserCompleteAction(users))
             .catch((error) => Observable.of(new SearchUserErrorAction(error)))
         );
 
@@ -31,6 +30,5 @@ export class UserListEffects {
         private userService: UserService,
         private toastrService: ToastrService
 
-    ) {
-    }
+    ) { }
 }

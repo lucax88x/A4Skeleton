@@ -3,9 +3,11 @@ import { LoginSelectors } from './login.selectors';
 
 describe('LoginSelectors', () => {
 
-  let state: AuthState = {
-    login: {
-      lock: false
+  let state: { auth: AuthState } = {
+    auth: {
+      login: {
+        lock: false
+      }
     }
   };
 
@@ -14,6 +16,6 @@ describe('LoginSelectors', () => {
     const result = LoginSelectors.Lock(state);
 
     //TEST
-    expect(result).toEqual(state.login.lock);
+    expect(result).toEqual(state.auth.login.lock);
   });
 });
