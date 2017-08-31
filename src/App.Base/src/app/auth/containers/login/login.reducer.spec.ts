@@ -1,11 +1,12 @@
-import { LoginAction, LoginActions, LoginCompletedAction, LoginErrorAction } from './login.actions';
+import { AuthenticateBuilder } from '../../spec/builders/authenticate-builder';
+import { AuthActions, LoginAction, LoginErrorAction, LoginFailedAction, LoginSuccessAction } from '../../auth.actions';
 import { LoginReducer } from './login.reducer';
 import { LoginState } from './login.state';
 
 describe('LoginReducer', () => {
     it('should return the default state', () => {
         //SETUP && ACT
-        const result = LoginReducer(undefined, {} as LoginActions);
+        const result = LoginReducer(undefined, {} as AuthActions);
 
         //TEST
         expect(result).toEqual(new LoginState());
@@ -14,7 +15,8 @@ describe('LoginReducer', () => {
     describe('LOGIN', () => {
         it('should lock', () => {
             //SETUP
-            const result = LoginReducer(undefined, new LoginAction());
+            let authenticate = new AuthenticateBuilder().withUsername("username").withPassword("password").build();
+            const result = LoginReducer(undefined, new LoginAction(authenticate));
 
             //TEST
             expect(result).toEqual(
@@ -27,7 +29,20 @@ describe('LoginReducer', () => {
     describe('LOGIN_COMPLETE', () => {
         it('should unlock', () => {
             //SETUP
-            const result = LoginReducer(undefined, new LoginCompletedAction());
+            const result = LoginReducer(undefined, new LoginSuccessAction());
+
+            //TEST
+            expect(result).toEqual(
+                {
+                    lock: false
+                });
+        });
+    });
+
+    describe('LOGIN_FAILED', () => {
+        it('should unlock', () => {
+            //SETUP
+            const result = LoginReducer(undefined, new LoginFailedAction());
 
             //TEST
             expect(result).toEqual(

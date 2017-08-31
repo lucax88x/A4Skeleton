@@ -1,0 +1,18 @@
+$sizes: (0, 10, 15, 20, 25, 30, 50);
+@each $size in $sizes {
+    .has-margin-#{$size} {
+        margin: $size + px;
+    }
+    .has-margin-top-#{$size} {
+        margin-top: $size + px;
+    }
+    .has-margin-bottom-#{$size} {
+        margin-bottom: $size + px;
+    }
+    .has-margin-left-#{$size} {
+        margin-left: $size + px;
+    }
+    .has-margin-right-#{$size} {
+        margin-right: $size + px;
+    }
+}

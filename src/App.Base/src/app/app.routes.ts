@@ -1,22 +1,29 @@
 import { Route } from '@angular/router';
 
-import { AuthGuard } from './auth/guards/auth.guard';
+import { HomeComponent } from './containers/home/home.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 
-// import { AuthGuard } from './auth/services/auth-guard.service';
 export const AppRoutes: Route[] = [
     {
         path: '',
-        redirectTo: '/users',
-        pathMatch: 'full'
+        component: HomeComponent
     },
     {
-        path: 'users',
-        loadChildren: './admin/admin.module#AdminModule',
-        canActivate: [AuthGuard]
+        path: 'admin',
+        loadChildren: './admin/admin.module#AdminModule'
     },
     {
         path: '**',
         component: NotFoundComponent
     }
 ];
+
+export const Routes = {
+    Home: "/",
+    Auth: {
+        Login: "/login"
+    },
+    Admin: {
+        Users: "/admin/users"
+    }
+}

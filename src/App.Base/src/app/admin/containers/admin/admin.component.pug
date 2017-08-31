@@ -1,0 +1,37 @@
+nav.navbar
+  .navbar-brand
+    a.navbar-item(href='/')
+      img(src='http://bulma.io/images/bulma-logo.png', alt='', width='112', height='28')
+    a.navbar-item.is-hidden-desktop(href='https://github.com/lucax88x/A4Skeleton', target='_blank')
+      span.icon(style='color: #333;')
+        i.fa.fa-github    
+    .navbar-burger.burger(data-target='navMenuExample')
+      span
+      span
+      span
+  #navMenuExample.navbar-menu
+    .navbar-start      
+      .navbar-item.has-dropdown.is-hoverable
+        .navbar-link
+          | More
+        #moreDropdown.navbar-dropdown
+          a.navbar-item(href='https://github.com/lucax88x/A4Skeleton/')
+            .level.is-mobile
+              .level-left
+                .level-item
+                  p
+                    strong Example
+                    br
+                    small just some github link
+              .level-right
+                .level-item
+                  span.icon.has-text-info
+                    i.fa.fa-plug
+    .navbar-end
+      a.navbar-item.is-hidden-desktop-only(href='https://github.com/lucax88x/A4Skeleton', target='_blank')
+        | Github            
+
+
+section.section
+  .container.is-fluid
+    router-outlet

@@ -1,5 +1,7 @@
+import { HomeComponent } from './containers/home/home.component';
 import 'rxjs/Rx';
 
+import { ErrorHandler } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,16 +14,19 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ToastrModule } from 'ngx-toastr';
 
 import { environment } from '../environments/environment';
-import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { AppErrorHandler } from './app-error-handler';
 import { AppComponent } from './app.component';
 import { AppMetaReducers } from './app.meta-reducers';
 import { AppRoutes } from './app.routes';
+import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     NotFoundComponent
   ],
   imports: [
@@ -52,7 +57,7 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
     }),
 
   ],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: AppErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

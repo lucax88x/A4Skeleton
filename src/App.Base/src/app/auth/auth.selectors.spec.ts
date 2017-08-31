@@ -1,23 +1,23 @@
-import { AuthState } from '../../auth.state';
-import { LoginSelectors } from './login.selectors';
+import { AuthSelectors } from './auth.selectors';
+import { AuthState } from './auth.state';
 
-describe('LoginSelectors', () => {
+describe('AuthSelectors', () => {
 
   let state: { auth: AuthState } = {
     auth: {
       status: {
-        loggedIn: false,
+        loggedIn: true,
         user: null,
       },
       login: {
-        lock: true
+        lock: false
       }
     }
   };
 
   it('should return lock', () => {
     //SETUP && ACT
-    const result = LoginSelectors.Lock(state);
+    const result = AuthSelectors.LoggedIn(state);
 
     //TEST
     expect(result).toEqual(true);

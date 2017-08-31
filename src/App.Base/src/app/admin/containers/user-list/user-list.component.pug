@@ -1,4 +1,28 @@
-button((click)='search()') Search
+div.has-margin-bottom-10
+  button.button((click)='search()') Search
 
-ol([locker]="lock$ | async")
-  li(*ngFor="let user of users$ | async") {{user.name}}
+div([locker]="lock$ | async")
+  .box(*ngFor="let user of users$ | async")
+    article.media
+      .media-left
+        figure.image.is-64x64
+          img(src='http://bulma.io/images/placeholders/128x128.png', alt='Image')
+      .media-content
+        .content
+          p
+            strong {{user.name}}
+            small @{{user.name | lowercase}}
+            small 31m
+            br
+            |           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+        nav.level.is-mobile
+          .level-left
+            a.level-item
+              span.icon.is-small
+                i.fa.fa-reply
+            a.level-item
+              span.icon.is-small
+                i.fa.fa-retweet
+            a.level-item
+              span.icon.is-small
+                i.fa.fa-heart

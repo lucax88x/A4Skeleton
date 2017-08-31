@@ -1,13 +1,12 @@
-import { NotAuthenticatedAction } from './auth.actions';
 import 'rxjs/Rx';
 
 import { async, TestBed } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { cold, hot } from 'jasmine-marbles';
-import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { hot } from 'jasmine-marbles';
+import { Observable } from 'rxjs/Observable';
 
+import { LoginRedirectAction, LoginSuccessAction, LogoutAction } from './auth.actions';
 import { AuthEffects } from './auth.effects';
 
 describe('AuthEffects', () => {
@@ -32,15 +31,40 @@ describe('AuthEffects', () => {
         router = TestBed.get(Router);
     });
 
-    describe('NotAuthenticatedAction', () => {
+    describe('loginSuccess', () => {
+
+        it('should redirect to home page once logged', () => {
+
+            //SETUP            
+            actions = hot('-a', { a: new LoginSuccessAction() });
+
+            //ACT && TEST
+            sut.loginSuccess.subscribe(result => {
+                expect(router.navigate).toHaveBeenCalledWith(["/admin/users"]);
+            });
+        });
+    });
+
+    describe('loginRedirect', () => {
 
         it('should redirect to login page', () => {
 
             //SETUP            
-            actions = hot('-a', { a: new NotAuthenticatedAction() });
+            actions = hot('-a', { a: new LoginRedirectAction() });
 
             //ACT && TEST
-            sut.notAuthenticated.subscribe(result => {
+            sut.loginRedirect.subscribe(result => {
+                expect(router.navigate).toHaveBeenCalledWith(["/login"]);
+            });
+        });
+
+        it('should redirect to login page', () => {
+
+            //SETUP            
+            actions = hot('-a', { a: new LogoutAction() });
+
+            //ACT && TEST
+            sut.loginRedirect.subscribe(result => {
                 expect(router.navigate).toHaveBeenCalledWith(["/login"]);
             });
         });

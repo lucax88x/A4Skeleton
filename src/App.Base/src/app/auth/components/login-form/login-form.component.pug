@@ -1,0 +1,27 @@
+form.login-form((ngSubmit)='submit()', name="loginForm", [formGroup]="loginForm")
+  div.field
+    p.control.has-icon.has-icon-right
+      input.input.email-input(type='text', placeholder='username', formControlName="username")
+      span.icon.user
+        i.fa.fa-user      
+
+    div.help.is-danger(*ngIf='username.invalid && (username.dirty || username.touched)')
+      div(*ngIf='username.errors.required')
+        | username is required.
+      div(*ngIf='username.errors.minlength')
+        | username must be at least 4 characters long.    
+
+  div.field
+    p.control.has-icon.has-icon-right
+      input.input.password-input(type='password', placeholder='●●●●●●●', formControlName="password")
+      span.icon.user
+        i.fa.fa-lock
+
+    div.help.is-danger(*ngIf='password.invalid && (password.dirty || password.touched)')
+      div(*ngIf='password.errors.required')
+        | password is required.
+      div(*ngIf='password.errors.minlength')
+        | password must be at least 4 characters long.    
+  div.field
+    p.control.login
+      button.button.is-success.is-outlined.is-large.is-fullwidth(type='submit', [disabled]='!loginForm.valid') Login

@@ -50,6 +50,11 @@ module.exports = function (wallaby) {
             { pattern: 'src/**/*spec.ts', ignore: true }
         ],
 
+        filesWithNoCoverageCalculated: [
+            'src/environments/environment*.ts',
+            
+        ],
+
         tests: [
             { pattern: 'src/**/*spec.ts', load: false }
         ],

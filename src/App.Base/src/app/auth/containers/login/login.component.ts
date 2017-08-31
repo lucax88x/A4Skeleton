@@ -1,9 +1,10 @@
-import { AuthState } from '../../auth.state';
+import { Authenticate } from '../../models/user';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { LoginAction } from './login.actions';
+import { LoginAction } from '../../auth.actions';
+import { AuthState } from '../../auth.state';
 import { LoginSelectors } from './login.selectors';
 
 @Component({
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  search() {
-    this.store.dispatch(new LoginAction());
+  onSubmit($event: Authenticate) {
+    this.store.dispatch(new LoginAction($event));
   }
 }

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'not-found',
-  templateUrl: './not-found.component.html',
+  selector: 'app-home',
+  templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotFoundComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor() { }
 

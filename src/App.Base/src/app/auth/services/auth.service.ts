@@ -10,11 +10,11 @@ export class AuthService {
   ) { }
 
   login(username: string, password: string): Observable<boolean> {
-    if (username !== 'test') {
-      return Observable.throw('Invalid username or password');
+    if (password === 'wrongpassword') {
+      return Observable.of(false).delay(400);
     }
 
-    return Observable.of(true);
+    return Observable.of(true).delay(200);    
   }
 
 }

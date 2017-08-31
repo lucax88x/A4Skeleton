@@ -3,13 +3,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 
 import { CoreModule } from '../../../core/core.module';
-import { LoginFormComponent } from '../../components/login-form/login-form.component';
-import { LoginComponent } from './login.component';
+import { LoginFormComponent } from './login-form.component';
 
-
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('LoginFormComponent', () => {
+  let component: LoginFormComponent;
+  let fixture: ComponentFixture<LoginFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,14 +16,14 @@ describe('LoginComponent', () => {
         ReactiveFormsModule,
         StoreModule.forRoot([], {})
       ],
-      declarations: [LoginComponent, LoginFormComponent],
+      declarations: [LoginFormComponent],
       providers: []
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
   });
 

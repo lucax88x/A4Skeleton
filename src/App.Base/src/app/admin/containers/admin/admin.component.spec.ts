@@ -1,27 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 
 import { CoreModule } from '../../../core/core.module';
-import { UserListComponent } from './user-list.component';
+import { AdminComponent } from './admin.component';
 
-describe('UserListComponent', () => {
-  let component: UserListComponent;
-  let fixture: ComponentFixture<UserListComponent>;
+describe('AdminComponent', () => {
+  let component: AdminComponent;
+  let fixture: ComponentFixture<AdminComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot([], {}),
+        RouterTestingModule.withRoutes([]),
         CoreModule
       ],
-      declarations: [UserListComponent],
+      declarations: [AdminComponent],
       providers: []
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserListComponent);
+    fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
   });
 

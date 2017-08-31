@@ -14,7 +14,7 @@ class LockerChanges implements SimpleChanges {
 })
 export class LockerDirective implements OnChanges {
 
-  @Input("locker") lockerInput: boolean;
+  @Input('locker') lockerInput: boolean;
 
   constructor(private locker: LockerService) { }
 
@@ -23,8 +23,9 @@ export class LockerDirective implements OnChanges {
       this.locker.Lock();
       // lock element
     }
-    else
+    else {
       this.locker.Unlock();
-    // unlock element
+      // unlock element
+    }
   }
 }
