@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
 
-import { LoginComponent } from './containers/login/login.component';
+import { LoggedInComponent } from './containers/logged-in/logged-in.component';
 
 export const AuthRoutes: Route[] = [
     {
-        path: 'login',
-        component: LoginComponent
+        path: 'logged-in',
+        component: LoggedInComponent
     }
 ];

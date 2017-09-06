@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { routerTransition } from './app.transitions';
 
@@ -9,7 +9,7 @@ import { routerTransition } from './app.transitions';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   ngOnInit() {
     Splash.Splasher.Instance.stop();

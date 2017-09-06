@@ -6,12 +6,14 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs/Observable';
 
-import { LoginRedirectAction, LoginSuccessAction, LogoutAction } from './auth.actions';
+import { LoggedInAction, LoggedOutAction, LoginAction, LogoutAction, NotAuthorizedAction } from './auth.actions';
 import { AuthEffects } from './auth.effects';
+import { AuthService } from './services/auth.service';
 
 describe('AuthEffects', () => {
     let actions: Observable<any>;
     let router: jasmine.SpyObj<Router>;
+    let auth: jasmine.SpyObj<AuthService>;
     let sut: AuthEffects;
 
     beforeEach(async(() => TestBed.configureTestingModule({
@@ -22,6 +24,10 @@ describe('AuthEffects', () => {
             {
                 provide: Router,
                 useValue: jasmine.createSpyObj('router', ['navigate'])
+            },
+            {
+                provide: AuthService,
+                useValue: jasmine.createSpyObj('auth', ['login', 'logout'])
             }
         ]
     })));
@@ -29,43 +35,75 @@ describe('AuthEffects', () => {
     beforeEach(() => {
         sut = TestBed.get(AuthEffects);
         router = TestBed.get(Router);
+        auth = TestBed.get(AuthService);
     });
 
-    describe('loginSuccess', () => {
+    describe('login', () => {
 
-        it('should redirect to home page once logged', () => {
+        it('should perform auth0 login', () => {
 
-            //SETUP            
-            actions = hot('-a', { a: new LoginSuccessAction() });
+            // SETUP
+            actions = hot('-a', { a: new LoginAction() });
 
-            //ACT && TEST
-            sut.loginSuccess.subscribe(result => {
-                expect(router.navigate).toHaveBeenCalledWith(["/admin/users"]);
+            // ACT && TEST
+            sut.login.subscribe(result => {
+                expect(auth.login).toHaveBeenCalled();
             });
         });
     });
 
-    describe('loginRedirect', () => {
+    describe('loggedIn', () => {
 
-        it('should redirect to login page', () => {
+        it('should redirect to admin page once logged', () => {
 
-            //SETUP            
-            actions = hot('-a', { a: new LoginRedirectAction() });
+            // SETUP
+            actions = hot('-a', { a: new LoggedInAction() });
 
-            //ACT && TEST
-            sut.loginRedirect.subscribe(result => {
-                expect(router.navigate).toHaveBeenCalledWith(["/login"]);
+            // ACT && TEST
+            sut.loggedIn.subscribe(result => {
+                expect(router.navigate).toHaveBeenCalledWith(['/admin/users']);
             });
         });
+    });
 
-        it('should redirect to login page', () => {
+    describe('logout', () => {
 
-            //SETUP            
+        it('should perform logout', () => {
+
+            // SETUP
             actions = hot('-a', { a: new LogoutAction() });
 
-            //ACT && TEST
-            sut.loginRedirect.subscribe(result => {
-                expect(router.navigate).toHaveBeenCalledWith(["/login"]);
+            // ACT && TEST
+            sut.logout.subscribe(result => {
+                expect(auth.logout).toHaveBeenCalled();
+            });
+        });
+    });
+
+    describe('loggedOut', () => {
+
+        it('should redirect to home once loggedOut', () => {
+
+            // SETUP
+            actions = hot('-a', { a: new LoggedOutAction() });
+
+            // ACT && TEST
+            sut.loggedOut.subscribe(result => {
+                expect(router.navigate).toHaveBeenCalledWith(['/']);
+            });
+        });
+    });
+
+    describe('notAuthorized', () => {
+
+        it('should redirect to home if not authorized', () => {
+
+            // SETUP
+            actions = hot('-a', { a: new NotAuthorizedAction() });
+
+            // ACT && TEST
+            sut.notAuthorized.subscribe(result => {
+                expect(router.navigate).toHaveBeenCalledWith(['/']);
             });
         });
     });

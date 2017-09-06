@@ -1,4 +1,9 @@
+
 export class StatusState {
-  loggedIn: boolean = false;
+  loggedIn: boolean;
   user: {};
+
+  constructor() {
+    this.loggedIn = false;
+  }
 }

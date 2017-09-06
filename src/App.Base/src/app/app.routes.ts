@@ -19,11 +19,10 @@ export const AppRoutes: Route[] = [
 ];
 
 export const Routes = {
-    Home: "/",
+    Home: '/',
     Auth: {
-        Login: "/login"
     },
     Admin: {
-        Users: "/admin/users"
+        Users: '/admin/users'
     }
-}
+};

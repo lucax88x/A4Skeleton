@@ -1,4 +1,10 @@
 p
   | home
 
-  a(routerLink='/login') Login
+button.btn.btn-primary.btn-margin(*ngIf='(loggedIn$ | async) === false', (click)='login()')
+  | Log In
+button.btn.btn-primary.btn-margin(*ngIf='(loggedIn$ | async) === true', (click)='logout()')
+  | Log Out
+
+p
+  | {{loggedIn$ | async}}

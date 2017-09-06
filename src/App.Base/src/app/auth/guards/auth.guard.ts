@@ -1,9 +1,9 @@
-import { LoginRedirectAction } from '../auth.actions';
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
+import { LoginAction, NotAuthorizedAction } from '../auth.actions';
 import { AuthSelectors } from '../auth.selectors';
 import { AuthState } from '../auth.state';
 
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
                 return true;
             }
 
-            this.store.dispatch(new LoginRedirectAction());
+            this.store.dispatch(new NotAuthorizedAction());
 
             return false;
         });

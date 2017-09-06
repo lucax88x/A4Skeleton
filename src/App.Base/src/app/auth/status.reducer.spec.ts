@@ -1,23 +1,22 @@
-import { AuthenticateBuilder } from './spec/builders/authenticate-builder';
-import { StatusState } from './status.state';
-import { AuthActions, LoginAction, LoginErrorAction, LoginFailedAction, LoginSuccessAction } from './auth.actions';
+import { AuthActions, LoggedInAction, LoginErrorAction } from './auth.actions';
 import { StatusReducer } from './status.reducer';
+import { StatusState } from './status.state';
 
 describe('StatusReducer', () => {
     it('should return the default state', () => {
-        //SETUP && ACT
+        // SETUP && ACT
         const result = StatusReducer(undefined, {} as AuthActions);
 
-        //TEST
+        // TEST
         expect(result).toEqual(new StatusState());
     });
 
-    describe('LOGIN_COMPLETE', () => {
+    describe('LOGGED_IN', () => {
         it('should correctly set the user and loggedIn status', () => {
-            //SETUP
-            const result = StatusReducer(undefined, new LoginSuccessAction());
+            // SETUP
+            const result = StatusReducer(undefined, new LoggedInAction());
 
-            //TEST
+            // TEST
             expect(result).toEqual(
                 {
                     loggedIn: true,
@@ -26,26 +25,12 @@ describe('StatusReducer', () => {
         });
     });
 
-    describe('LOGIN_FAILED', () => {
-        it('should remove the loggedIn status and delete the user', () => {
-            //SETUP
-            const result = StatusReducer(undefined, new LoginFailedAction());
-
-            //TEST
-            expect(result).toEqual(
-                {
-                    loggedIn: false,
-                    user: null
-                });
-        });
-    });
-
     describe('LOGIN_ERROR', () => {
         it('should remove the loggedIn status and delete the user', () => {
-            //SETUP
-            const result = StatusReducer(undefined, new LoginErrorAction("error"));
+            // SETUP
+            const result = StatusReducer(undefined, new LoginErrorAction({}));
 
-            //TEST
+            // TEST
             expect(result).toEqual(
                 {
                     loggedIn: false,

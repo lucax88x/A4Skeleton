@@ -1,3 +1,5 @@
+
+
 interface PleaseWaitOptions {
   logo?: string;
   backgroundColor: string;
@@ -8,27 +10,25 @@ interface PleaseWait {
   finish();
 }
 
-interface PleaseWaitStatic {
-  (options: PleaseWaitOptions): PleaseWait;
-}
-
 namespace Splash {
 
   export class Splasher {
+    public static Instance: Splasher = new Splasher();
+
     private loadingScreen: PleaseWait;
 
     start() {
       if (!this.loadingScreen) {
-        let ua = navigator.userAgent;
-        let is_native_android = ((ua.indexOf("Mozilla/5.0") > -1 && ua.indexOf("Android ") > -1 && ua.indexOf("AppleWebKit") > -1) && (ua.indexOf("Version") > -1));
+        const ua = navigator.userAgent;
+        const is_native_android = (ua.indexOf('Mozilla/5.0') > -1 && ua.indexOf('Android ') > -1 && ua.indexOf('AppleWebKit') > -1) && (ua.indexOf('Version') > -1);
 
         if (!is_native_android) {
 
-          let pw: PleaseWaitStatic = window["pleaseWait"];
+          const pw = window['pleaseWait'];
 
           this.loadingScreen = pw({
-            logo: "",
-            backgroundColor: "#202328",
+            logo: '',
+            backgroundColor: '#202328',
             loadingHtml: `<div class="sk-folding-cube">
                           <div class="sk-cube1 sk-cube"></div>
                           <div class="sk-cube2 sk-cube"></div>
@@ -46,8 +46,6 @@ namespace Splash {
         delete this.loadingScreen;
       }
     }
-
-    public static Instance: Splasher = new Splasher();
   }
 
   Splasher.Instance.start();

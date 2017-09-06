@@ -7,9 +7,12 @@ import { environment } from '../environments/environment';
 export function logger(reducer: ActionReducer<{}>): ActionReducer<any, any> {
     return function (state: {}, action: Action) {
 
-        console.group(`Action: ${action.type}`);
+        console.groupCollapsed(`Action: ${action.type}`);
 
-        if (state) console.log(state);
+        if (state) {
+            console.log(state);
+        }
+
         console.log(action);
 
         console.groupEnd();

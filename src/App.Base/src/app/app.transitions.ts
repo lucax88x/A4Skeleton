@@ -15,4 +15,4 @@ export const routerTransition = trigger('routerTransition', [
             ], { optional: true }),
         ])
     ])
-])
+]);

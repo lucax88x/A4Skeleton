@@ -1,4 +1,3 @@
-import { HomeComponent } from './containers/home/home.component';
 import 'rxjs/Rx';
 
 import { ErrorHandler } from '@angular/core';
@@ -20,6 +19,7 @@ import { AppComponent } from './app.component';
 import { AppMetaReducers } from './app.meta-reducers';
 import { AppRoutes } from './app.routes';
 import { AuthModule } from './auth/auth.module';
+import { HomeComponent } from './containers/home/home.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 
 
@@ -39,7 +39,7 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
 
     RouterModule.forRoot(
       AppRoutes,
-      { enableTracing: !environment.production }
+      // { enableTracing: !environment.production }
     ),
 
     StoreModule.forRoot([], { metaReducers: AppMetaReducers }),
